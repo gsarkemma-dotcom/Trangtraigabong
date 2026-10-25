@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -7,9 +6,6 @@
   <meta name="theme-color" content="#F1F8F0">
   <title>TRANG TRẠI GÀ BÔNG</title>
   <style>
-    /* ==========================
-       1. BẢNG MÀU
-    ========================== */
     :root {
       --bg: #F1F8F0;
       --white: #FFFFFF;
@@ -21,1158 +17,403 @@
       --shadow: 0 8px 25px rgba(76, 117, 82, 0.08);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    /* Custom Scrollbar cho toàn trang */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--green-dark); }
 
     body {
       margin: 0;
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--green-dark);
-      background:
-        radial-gradient(ellipse at top, #DDEEDB 0%, transparent 55%),
-        var(--bg);
+      background: radial-gradient(ellipse at top, #DDEEDB 0%, transparent 55%), var(--bg);
       overflow-x: hidden;
     }
 
-    button, input, select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    button:focus-visible,
-    input:focus-visible,
-    select:focus-visible {
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible, select:focus-visible {
       outline: 3px solid #A5CCA2;
       outline-offset: 3px;
     }
 
-    /* ==========================
-       2. LÁ RƠI
-    ========================== */
+    /* Lá rơi */
     #leaf-background {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
-      contain: strict;
+      position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; contain: strict;
     }
-
     .falling-leaf {
-      position: absolute;
-      top: -40px;
-      left: var(--leaf-left);
-      font-size: var(--leaf-size);
-      opacity: var(--leaf-opacity);
-      filter:
-        drop-shadow(0 0 3px rgba(151, 207, 146, 0.5))
-        drop-shadow(0 0 7px rgba(151, 207, 146, 0.2));
-      animation: leaf-fall var(--leaf-duration) linear
-        var(--leaf-delay) infinite;
-      user-select: none;
-      will-change: transform;
+      position: absolute; top: -40px; left: var(--leaf-left); font-size: var(--leaf-size); opacity: var(--leaf-opacity);
+      filter: drop-shadow(0 0 3px rgba(151, 207, 146, 0.5)) drop-shadow(0 0 7px rgba(151, 207, 146, 0.2));
+      animation: leaf-fall var(--leaf-duration) linear var(--leaf-delay) infinite; user-select: none; will-change: transform;
     }
-
     @keyframes leaf-fall {
-      0% {
-        transform: translate3d(0, -5vh, 0) rotate(0deg);
-      }
-      50% {
-        transform: translate3d(28px, 50vh, 0) rotate(150deg);
-      }
-      100% {
-        transform: translate3d(-20px, 110vh, 0) rotate(320deg);
-      }
+      0%   { transform: translate3d(0, -5vh, 0) rotate(0deg); }
+      50%  { transform: translate3d(28px, 50vh, 0) rotate(150deg); }
+      100% { transform: translate3d(-20px, 110vh, 0) rotate(320deg); }
     }
 
-    /* ==========================
-       3. THANH ĐIỀU HƯỚNG
-    ========================== */
+    /* Navbar & Hero */
     .navbar {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      padding: 18px 7%;
-      background: rgba(255, 255, 255, 0.88);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(10px);
+      position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 15px;
+      padding: 18px 7%; background: rgba(255, 255, 255, 0.88); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px);
     }
+    .logo { font-size: 15px; font-weight: 800; letter-spacing: 2px; color: var(--green); }
+    .nav-note { font-size: 12px; color: var(--muted); }
 
-    .logo {
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: var(--green);
+    .hero { position: relative; z-index: 1; text-align: center; padding: 65px 20px 35px; }
+    .eyebrow { display: inline-block; padding: 8px 14px; border: 1px solid var(--border); border-radius: 30px; background: rgba(255, 255, 255, 0.8); color: var(--green); font-size: 11px; letter-spacing: 2px; }
+    .hero h1 { margin: 22px 0 12px; font-size: clamp(30px, 6vw, 54px); line-height: 1.15; letter-spacing: -1px; }
+    .hero h1 span { color: var(--green); }
+    .hero p { max-width: 510px; margin: 0 auto; color: var(--muted); font-size: 14px; line-height: 1.9; }
+    .hero-decoration { margin-top: 18px; font-size: 24px; letter-spacing: 8px; }
+
+    /* Collection & Controls */
+    .collection { position: relative; z-index: 1; width: min(1100px, 100%); margin: 0 auto; padding: 15px 24px 70px; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 15px; margin-bottom: 22px; }
+    .section-heading h2 { margin: 0 0 7px; font-size: 23px; }
+    .section-heading p { margin: 0; color: var(--muted); font-size: 13px; }
+    .count { white-space: nowrap; color: var(--green); font-size: 13px; font-weight: bold; }
+
+    .controls { display: grid; grid-template-columns: minmax(180px, 1fr) 190px auto; gap: 10px; margin-bottom: 25px; }
+    .search-wrap { position: relative; }
+    .search-wrap span { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+    .search-wrap input, .controls select {
+      width: 100%; min-height: 46px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px;
+      background: rgba(255, 255, 255, 0.94); color: var(--green-dark); transition: all 0.2s;
     }
+    .search-wrap input:focus, .controls select:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(99, 155, 112, 0.2); outline: none; }
+    .search-wrap input { padding-left: 42px; }
+    .search-wrap input::placeholder { color: #98A99B; }
+    .reset-button { padding: 10px 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--green-light); color: var(--green-dark); font-weight: bold; transition: 0.2s ease; }
+    .reset-button:hover { background: #C0DCC0; }
 
-    .nav-note {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* ==========================
-       4. PHẦN GIỚI THIỆU
-    ========================== */
-    .hero {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 65px 20px 35px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.8);
-      color: var(--green);
-      font-size: 11px;
-      letter-spacing: 2px;
-    }
-
-    .hero h1 {
-      margin: 22px 0 12px;
-      font-size: clamp(30px, 6vw, 54px);
-      line-height: 1.15;
-      letter-spacing: -1px;
-    }
-
-    .hero h1 span {
-      color: var(--green);
-    }
-
-    .hero p {
-      max-width: 510px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
-    }
-
-    .hero-decoration {
-      margin-top: 18px;
-      font-size: 24px;
-      letter-spacing: 8px;
-    }
-
-    /* ==========================
-       5. KHU VỰC CHỌN NHÂN VẬT
-    ========================== */
-    .collection {
-      position: relative;
-      z-index: 1;
-      width: min(1100px, 100%);
-      margin: 0 auto;
-      padding: 15px 24px 70px;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 15px;
-      margin-bottom: 22px;
-    }
-
-    .section-heading h2 {
-      margin: 0 0 7px;
-      font-size: 23px;
-    }
-
-    .section-heading p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .count {
-      white-space: nowrap;
-      color: var(--green);
-      font-size: 13px;
-    }
-
-    /* ==========================
-       6. TÌM KIẾM VÀ BỘ LỌC
-    ========================== */
-    .controls {
-      display: grid;
-      grid-template-columns: minmax(180px, 1fr) 190px auto;
-      gap: 10px;
-      margin-bottom: 25px;
-    }
-
-    .search-wrap {
-      position: relative;
-    }
-
-    .search-wrap span {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-
-    .search-wrap input,
-    .controls select {
-      width: 100%;
-      min-height: 46px;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.94);
-      color: var(--green-dark);
-    }
-
-    .search-wrap input {
-      padding-left: 42px;
-    }
-
-    .search-wrap input::placeholder {
-      color: #98A99B;
-    }
-
-    .controls select {
-      cursor: pointer;
-    }
-
-    .reset-button {
-      padding: 10px 16px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--green-light);
-      color: var(--green-dark);
-      transition: 0.2s ease;
-    }
-
-    .reset-button:hover {
-      background: #C0DCC0;
-    }
-
-    /* ==========================
-       7. THẺ NHÂN VẬT
-    ========================== */
-    .character-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-    }
-
+    /* Character cards */
+    .character-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
     .character-card {
-      min-width: 0;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.93);
-      box-shadow: var(--shadow);
-      transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.22s ease;
+      min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 20px; background: rgba(255, 255, 255, 0.93);
+      box-shadow: var(--shadow); transition: transform 0.22s ease, box-shadow 0.22s ease; display: flex; flex-direction: column; cursor: pointer;
     }
+    .character-card:hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(76, 117, 82, 0.13); }
+    .character-art { position: relative; display: grid; place-items: center; height: 180px; overflow: hidden; background: linear-gradient(145deg, #F0F7EC, #DDEEDB); }
+    .character-art::before, .character-art::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.4); }
+    .character-art::before { width: 140px; height: 140px; top: -45px; right: -20px; }
+    .character-art::after { width: 90px; height: 90px; bottom: -40px; left: -10px; }
+    .character-art img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+    .character-card:hover .character-art img { transform: scale(1.04); }
 
-    .character-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 14px 30px rgba(76, 117, 82, 0.13);
+    .character-info { padding: 17px; flex: 1; display: flex; flex-direction: column; }
+    .character-info h3 { margin: 0 0 8px; font-size: 18px; }
+    .character-intro { color: #64836a; font-weight: 600; font-size: 13px; margin: 0 0 10px; }
+    .character-description { white-space: pre-line; line-height: 1.65; color: var(--muted); font-size: 13px; margin: 0 0 14px; max-height: 110px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
+    
+    .character-tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; }
+    .character-tag, .character-khu { border: 1px solid #c6dfc9; border-radius: 20px; background: #edf7ee; color: #41694a; padding: 6px 11px; font-size: 12px; cursor: pointer; transition: 0.2s; }
+    .character-tag:hover, .character-khu:hover, .character-tag.active, .character-khu.active { background: #548b61; border-color: #548b61; color: white; }
+    .character-khu { display: inline-block; margin-bottom: 12px; text-align: left; }
+
+    .choose-button { width: 100%; padding: 11px; border: 1px solid #C0DCC0; border-radius: 10px; background: var(--green-light); color: var(--green-dark); font-weight: bold; transition: 0.2s ease; text-align: center; text-decoration: none; display: block; margin-top: auto; }
+    .choose-button:hover { background: #C0DCC0; }
+
+    .empty-state { grid-column: 1 / -1; padding: 50px 20px; border: 1px dashed var(--border); border-radius: 18px; text-align: center; color: var(--muted); background: rgba(255, 255, 255, 0.65); }
+    .empty-state div { margin-bottom: 10px; font-size: 32px; }
+
+    /* =======================================
+       BẢNG NỘI DUNG CHI TIẾT (MODAL)
+    ======================================= */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(35, 60, 45, 0.6); backdrop-filter: blur(5px);
+      z-index: 9999; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 20px;
     }
-
-    .character-card.selected {
-      border: 2px solid var(--green);
-      box-shadow: 0 0 0 4px rgba(99, 155, 112, 0.12);
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    
+    .modal-container {
+      background: var(--bg); width: 100%; max-width: 800px; max-height: 90vh;
+      border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+      display: flex; flex-direction: column; overflow: hidden;
+      transform: translateY(30px) scale(0.95); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
+    .modal-overlay.active .modal-container { transform: translateY(0) scale(1); }
 
-    .character-art {
-      position: relative;
-      display: grid;
-      place-items: center;
-      height: 180px;
-      overflow: hidden;
-      background: linear-gradient(145deg, #F0F7EC, #DDEEDB);
+    .modal-header {
+      position: relative; display: flex; gap: 24px; padding: 30px;
+      background: linear-gradient(135deg, #DDEEDB, #F1F8F0); border-bottom: 1px solid var(--border);
     }
-
-    .character-art::before,
-    .character-art::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.4);
+    .modal-close {
+      position: absolute; top: 15px; right: 15px; width: 36px; height: 36px; border-radius: 50%;
+      background: white; border: 1px solid var(--border); font-size: 24px; line-height: 0;
+      display: flex; align-items: center; justify-content: center; color: var(--muted);
+      cursor: pointer; transition: 0.2s; z-index: 10;
     }
+    .modal-close:hover { background: #ffdbdb; color: #d9534f; border-color: #ffc2c2; }
+    
+    .modal-img-wrap { width: 160px; height: 160px; flex-shrink: 0; border-radius: 20px; border: 4px solid white; box-shadow: var(--shadow); overflow: hidden; background: white;}
+    .modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .modal-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .modal-info h2 { margin: 0 0 10px; font-size: 28px; color: var(--green-dark); }
+    .modal-info .intro { font-weight: 600; color: var(--green); margin: 0 0 15px; font-size: 15px; }
 
-    .character-art::before {
-      width: 140px;
-      height: 140px;
-      top: -45px;
-      right: -20px;
+    .modal-body {
+      padding: 30px; overflow-y: auto; font-size: 15px; line-height: 1.8;
+      color: var(--green-dark); white-space: pre-wrap; /* Lệnh này giúp GIỮ NGUYÊN XUỐNG DÒNG */
+      background: #fdfdfd;
     }
+    .modal-body::-webkit-scrollbar { width: 6px; }
+    .modal-body::-webkit-scrollbar-track { background: transparent; }
+    .modal-body::-webkit-scrollbar-thumb { background: #c6dfc9; border-radius: 10px; }
+    .modal-body::-webkit-scrollbar-thumb:hover { background: var(--green); }
 
-    .character-art::after {
-      width: 90px;
-      height: 90px;
-      bottom: -40px;
-      left: -10px;
+    .modal-footer {
+      padding: 20px 30px; background: rgba(255, 255, 255, 0.8); border-top: 1px solid var(--border);
+      display: flex; justify-content: flex-end;
     }
-
-    .character-art img {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
+    .btn-chat {
+      background: var(--green); color: white; padding: 12px 30px; border-radius: 12px;
+      text-decoration: none; font-weight: bold; font-size: 15px; transition: 0.2s;
+      box-shadow: 0 4px 15px rgba(99, 155, 112, 0.3);
     }
+    .btn-chat:hover { background: var(--green-dark); transform: translateY(-2px); }
 
-    .character-card:hover .character-art img {
-      transform: scale(1.04);
-    }
+    /* Footer */
+    footer { position: relative; z-index: 1; padding: 24px 15px; border-top: 1px solid var(--border); background: rgba(255, 255, 255, 0.65); text-align: center; color: var(--muted); font-size: 12px; line-height: 1.8; }
 
-    .character-info {
-      padding: 17px;
-    }
-
-    .character-category {
-      display: inline-block;
-      margin-bottom: 9px;
-      padding: 5px 9px;
-      border-radius: 20px;
-      background: var(--green-light);
-      color: var(--green);
-      font-size: 10px;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-    }
-
-    .character-info h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-    }
-
-    .character-info p {
-      min-height: 40px;
-      margin: 0 0 15px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .choose-button {
-      width: 100%;
-      padding: 11px;
-      border: 1px solid #C0DCC0;
-      border-radius: 10px;
-      background: var(--green-light);
-      color: var(--green-dark);
-      font-weight: bold;
-      transition: 0.2s ease;
-    }
-
-    .choose-button:hover {
-      background: #C0DCC0;
-    }
-
-    .character-card.selected .choose-button {
-      background: var(--green);
-      color: white;
-      border-color: var(--green);
-    }
-
-    /* ==========================
-       8. KẾT QUẢ TRỐNG
-    ========================== */
-    .empty-state {
-      grid-column: 1 / -1;
-      padding: 50px 20px;
-      border: 1px dashed var(--border);
-      border-radius: 18px;
-      text-align: center;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.65);
-    }
-
-    .empty-state div {
-      margin-bottom: 10px;
-      font-size: 32px;
-    }
-
-    /* ==========================
-       9. THÔNG BÁO NHÂN VẬT ĐÃ CHỌN
-    ========================== */
-    .selection-panel {
-      margin-top: 25px;
-      padding: 20px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.82);
-      text-align: center;
-    }
-
-    .selection-panel p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .selection-panel strong {
-      color: var(--green);
-    }
-
-    /* ==========================
-       10. CHÂN TRANG
-    ========================== */
-    footer {
-      position: relative;
-      z-index: 1;
-      padding: 24px 15px;
-      border-top: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.65);
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    /* ==========================
-       11. GIAO DIỆN ĐIỆN THOẠI
-    ========================== */
+    /* Responsive */
     @media (max-width: 760px) {
-      .navbar {
-        padding: 16px 5%;
-      }
-
-      .hero {
-        padding-top: 48px;
-      }
-
-      .collection {
-        padding-right: 16px;
-        padding-left: 16px;
-      }
-
-      .character-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .character-art {
-        height: 145px;
-      }
-
-      .character-info {
-        padding: 13px;
-      }
-
-      .controls {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .search-wrap {
-        grid-column: 1 / -1;
-      }
-
-      .reset-button {
-        min-height: 44px;
-      }
+      .navbar { padding: 16px 5%; }
+      .hero { padding-top: 48px; }
+      .character-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .controls { grid-template-columns: 1fr 1fr; }
+      .search-wrap { grid-column: 1 / -1; }
     }
-
-    @media (max-width: 390px) {
-      .nav-note {
-        font-size: 10px;
-      }
-
-      .character-grid {
-        gap: 9px;
-      }
-
-      .character-art {
-        height: 120px;
-      }
-
-      .character-info h3 {
-        font-size: 16px;
-      }
-
-      .character-info p {
-        font-size: 12px;
-      }
+    @media (max-width: 650px) {
+      .modal-header { flex-direction: column; align-items: center; text-align: center; padding: 25px 20px; }
+      .modal-tags { justify-content: center; }
+      .modal-body { padding: 20px; font-size: 14px; }
+      .modal-footer { justify-content: center; }
+      .btn-chat { width: 100%; text-align: center; }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        animation: none !important;
-        transition: none !important;
-      }
-
-      .falling-leaf {
-        display: none;
-      }
-    }
-.character-intro {
-  color: #64836a;
-  font-weight: 600;
-}
-
-.character-description {
-  white-space: pre-line;
-  line-height: 1.6;
-}
-
-.character-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin: 14px 0;
-}
-
-.character-tag,
-.character-khu {
-  border: 1px solid #c6dfc9;
-  border-radius: 20px;
-  background: #edf7ee;
-  color: #41694a;
-  padding: 7px 11px;
-  font: inherit;
-  font-size: 12px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.character-tag:hover,
-.character-khu:hover,
-.character-tag.active,
-.character-khu.active {
-  background: #548b61;
-  border-color: #548b61;
-  color: white;
-}
-
-.character-khu {
-  display: block;
-  margin: 10px 0 14px;
-  text-align: left;
-}
+    @media (max-width: 480px) { .character-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
-
 <body>
-  <!-- LỚP HIỆU ỨNG NỀN -->
   <div id="leaf-background" aria-hidden="true"></div>
 
-  <!-- THANH ĐIỀU HƯỚNG -->
   <header class="navbar">
     <div class="logo">🍃 LITTLE GARDEN</div>
     <div class="nav-note">A little world of green</div>
   </header>
 
-  <!-- GIỚI THIỆU -->
   <section class="hero">
     <div class="eyebrow">✿ YOUR LITTLE COLLECTION ✿</div>
-
-    <h1>Meet Your <span>Characters</span></h1>
-
-    <p>
-      Chào mừng bạn đến với khu vườn nhỏ.
-      Tìm kiếm, khám phá và chọn nhân vật mà bạn yêu thích nhé!
-    </p>
-
-    <div class="hero-decoration" aria-hidden="true">
-      ✿ 🍃 ❀ 🍃 ✿
-    </div>
+    <h1>🐥 Trang Trại <span>Gà Bông</span> 🌷</h1>
+    <p>chào mừng em đã ghé thăm, hãy cùng Shinn đi tham quan nhà của những chú lùn mỏ nhọn nào~</p>
+    <div class="hero-decoration" aria-hidden="true">✿ 🍃 ❀ 🍃 ✿</div>
   </section>
 
-  <!-- DANH SÁCH NHÂN VẬT -->
   <main class="collection">
     <div class="section-heading">
       <div>
-        <h2>Vườn nhân vật</h2>
-        <p>Chọn một người bạn đồng hành của bạn.</p>
+        <h2>Chuồng phân loại</h2>
+        <p>Nơi quy tụ toàn bộ những chú Gà Cưng mang năng lực diệu kỳ..</p>
       </div>
-
-      <div class="count" id="character-count">6 nhân vật</div>
+      <div class="count" id="character-count">0 nhân vật</div>
     </div>
 
-    <!-- TÌM KIẾM VÀ LỌC -->
     <div class="controls">
       <label class="search-wrap">
         <span aria-hidden="true">⌕</span>
-        <input
-          type="search"
-          id="search-input"
-          placeholder="Tìm tên nhân vật..."
-          aria-label="Tìm tên nhân vật"
-        >
+        <input type="search" id="search-input" placeholder="Tìm tên nhân vật..." aria-label="Tìm tên nhân vật">
       </label>
-
       <select id="category-filter" aria-label="Lọc theo nhóm">
         <option value="all">Tất cả nhóm</option>
-        <option value="Chuồng xưa">chuồng xưa</option>
+        <option value="Chuồng xưa">Chuồng xưa</option>
         <option value="Chuồng tương lai">Chuồng tương lai</option>
         <option value="Chuồng hiện đại">Chuồng hiện đại</option>
         <option value="Chuồng huyền huyễn">Chuồng huyền huyễn</option>
         <option value="Chuồng anime">Chuồng anime</option>
         <option value="Chuồng đa vũ trụ">Chuồng đa vũ trụ</option>
       </select>
-
-      <button class="reset-button" id="reset-button" type="button">
-        ↺ Đặt lại
-      </button>
+      <button class="reset-button" id="reset-button" type="button">↺ Đặt lại</button>
     </div>
 
-    <!-- THẺ SẼ ĐƯỢC TẠO BẰNG JAVASCRIPT -->
     <div class="character-grid" id="character-grid"></div>
-
-    <!-- KẾT QUẢ CHỌN -->
-    <section class="selection-panel" aria-live="polite">
-      <p id="selection-message">
-        🍀 Bạn chưa chọn nhân vật nào. Hãy chọn một nhân vật phía trên nhé!
-      </p>
-    </section>
   </main>
 
- <!-- CHÂN TRANG -->
-<footer>
-  <p class="footer-title">🐥 Trang Trại Gà Bông 🐥</p>
-  <p>Những câu chuyện nhỏ cùng nhau lớn lên 🌷</p>
-  <p class="footer-credit">Made with ♡ and little feathers 🪶</p>
-</footer>
-
-  <script>
-    /* ==========================
-       1. DỮ LIỆU NHÂN VẬT
-       Bạn có thể sửa tên, mô tả,
-       nhóm và ảnh tại đây.
-    ========================== */
-const characters = [
-  {
-  id: 1,
-  name: "ĐÌNH MẶC NHIÊN",
-  intro: "Gấu Bắc Cực × Động Vật trái đất",
-  content: "Trích:
-
-"Đừng có bày ra cái vẻ mặt như thể ta vừa bóp cổ em."
-
-Trong căn phòng vip tại bệnh viện nằm giữa lòng  thủ đô Beryl, Năm 3067.
-
-Đình Mặc Nhiên cất giọng trầm khàn, ngữ điệu nhạt nhẽo nhưng tay vẫn dứt khoát gỡ xong vòng dây nilon cuối cùng. Hắn liếc nhìn vệt m/á?u nhỏ đang rỉ ra ngay đầu kim luồn trên mu bàn tay {{user}}, động tác thoáng khựng lại. Hắn vô thức vươn ngón tay cái, miết nhẹ miếng băng dính y tế cho chặt lại, lực đạo có phần hơi thô bạo nhưng đủ để máu không chảy ngược ra ống.
-
-Xong xuôi, hắn thu tay về, đứng thẳng người dậy. Quần áo quân phục ma sát vào nhau tạo ra tiếng sột soạt khô khốc. Đình Mặc Nhiên đút hai tay vào túi quần, tầm mắt từ trên cao quét xuống phần bụng phẳng lì đang giấu dưới lớp chăn của {{user}}.
-
-"Ba tuần." Hắn đột ngột lên tiếng, giọng nói đều đều không mang theo bất kỳ sự trách móc hay vui mừng nào của một kẻ sắp làm cha. "Bác sĩ nói thai nhi ba tuần tuổi vẫn ổn định. Còn em thì từ một Á Thư F- đột biến thành Quân Thư D+... tính ra trên hệ thống sinh lý học của Brilliant tinh hệ, em vừa trúng số độc đắc đấy."
-
-Nói xong, hắn lại im lặng, ánh mắt nửa khép nửa mở chằm chằm nhìn vào biểu cảm của cậu. Hắn không có thói quen ép cung, thay vào đó, bản năng phục kích của một kẻ săn mồi khiến Đình Mặc Nhiên cực kỳ kiên nhẫn. Hắn cứ đứng sừng sững ở đó, vứt ra một câu thông tin rồi im lặng quan sát, chờ đợi phản ứng từ "con mồi". Bầu không khí ép bức đến nghẹt thở. Nhiều sĩ quan cấp tá dưới trướng hắn từng khai sạch cả bí mật quân sự chỉ vì không chịu nổi cái kiểu đứng yên nhìn chằm chằm như tạc tượng này.
-
-Nhưng đúng lúc sự căng thẳng đang leo thang đến đỉnh điểm, thì thiết bị liên lạc quang não đeo trên cổ tay Đình Mặc Nhiên rung lên bần bật.
-
-Tít... tít... tít...
-
-Tiếng chuông thông báo phá vỡ bầu không khí vắng lặng. Đình Mặc Nhiên khẽ nhíu mày, hơi nâng cổ tay lên. Màn hình hologram màu xanh nhạt lập tức phóng chiếu vào võng mạc hắn, hiển thị chế độ tin nhắn mật mã cấp cao. Người gửi: Tạ Cảnh Hành - Tư lệnh Quân đoàn Số 1.
-
-Trong một ngày nghỉ hiếm hoi, vị Thượng Tướng rảnh rỗi sinh nông nổi này không ở quân khu huấn luyện lính mà lại đi gửi tin nhắn khẩn cấp cho Tổng tư lệnh? Đình Mặc Nhiên lạnh nhạt quét mắt qua dòng chữ đang nhảy nhót trên giao diện thực tế ảo, và rồi, khóe môi hắn vô thức giật nhẹ một cái.
-
-##[Ê lão Đình, vợ ông mới thức tỉnh năng lực siêu phàm à? Đù má, tui mới lướt mạng nội bộ Keshia, thấy giật tít phu nhân Nguyên soái sàm sỡ, bóp mông nam minh tinh tuyến 1 ngay giữa phim trường! Gu dạo này mặn chát vậy? Link video full HD không che tui gửi bên dưới nè, có cần tui triệu tập Sư đoàn Tiên phong đi dập nát cái tòa soạn báo đó cho ông đỡ nhục không? 🤡]##
-
-"...?"
-
-Đình Mặc Nhiên dán mắt vào cái biểu tượng cảm xúc hình mặt hề trào phúng chói lóa ở cuối tin nhắn. Dây thần kinh thái dương của hắn giật nảy liên hồi.
-
-'Tuyệt vời. Thật sự tuyệt vời. Chồng thì ở tiền tuyến đánh Lost Beast muốn hộc m?áu, vợ thì ở nhà lên hotsearch vì đi bóp mông đàn ông'. Đình Mặc Nhiên âm thầm tự mỉa mai trong đầu, cảm giác cạn kiệt phước báu đến mức lười không buồn phản ứng. Hắn đưa tay xoa xoa ấn đường, lướt tay tắt cái giao diện chói mắt của Tạ Cảnh Hành đi trước khi bản thân tức giận đến mức nhổ cỏ cái Tổng bộ Quân đoàn 1.
-
-Hắn chậm rãi hạ tay xuống, ánh mắt một lần nữa di chuyển về phía {{user}}. Lần này, sự tò mò nhạt nhẽo đã được thay thế bằng một tia dò xét mang đậm mùi khinh khỉnh. Đôi con ngươi sắc bén của hắn đảo một vòng từ khuôn mặt thon nhỏ trắng bệch, đến đôi tay gầy gò yếu ớt đang ngoan ngoãn đặt trên chăn của cậu.
-
-"Tay này..." Đình Mặc Nhiên hất cằm, giọng điệu mang theo ba phần tò mò chân thật, bảy phần mỉa mai đến cùng cực, "...vừa cắm kim truyền dịch, vừa có sức đi bóp mông thằng minh tinh kia à? Ta thật sự thắc mắc, em bóp có thuận tay không?"
-
-"…………"
-
-—------------------------
-
-#[WORLD SETTING INSTRUCTION: SETTING FOUNDATION]
-
-A. [BỐI CẢNH THẾ GIỚI (PLOT & STORY SETTING)]
-
-Các chủng loài trên Brilliant tinh hệ đều đã trải qua hằng tỉ năm chọn lọc khắc nghiệt đến từ tự nhiên. Ban đầu, các tế bào động vật kết hợp với nhau tạo thành các thực thể đơn giản trong lòng đại dương. Sau đó, chúng tiếp nối nhau lên bờ phát triển, di cư, rồi cuối cùng tiến hoá thành thú hai chân như hiện tại.
-
-Nếu ở trái đất, con người là loài linh trưởng được hình thành do trải qua nhiều biến đổi di truyền và phân tách từ các loài vượn cổ. Thì ở brilliant, con người được tiến hoá từ bất kì các chủng tộc hùng mạnh nào trên tinh cầu, họ sẽ giữ hình thái con non từ 1-5 tuổi, sau đó phân hoá giới tính và tiến hành đánh giá cấp bậc sinh vật. Do con người được cường hoá về tinh thần và thể chất nên tỉ lệ nhóm tuổi ở Brilliant là 100-150 tuổi, hình thái con non từ 1-5 tuổi, 20 tuổi mới được xem là trưởng thành.
-
-Brilliant tinh hệ bao gồm năm trong lục: trong đó Keshia là một trong các đế quốc (nơi {{char}} và {{user}} sinh sống) hùng mạnh thiên về ngoại giao và quân sự, có thủ đô phồn vinh xa hoa tên Beryl. Bên cạnh đó, nước láng giềng phía tây Keshia là Amethyst, giữa hai nước là đường phân cách tồn tại khu tự trị, chợ đen buôn bán người, vật cấm, các Á thư ( Các Á thư mồ côi sẽ được đưa đến các trại buôn người dưới danh trại mồ côi tình thương.)
-
-B. [HỆ THỐNG GIỚI TÍNH (GENDER SYSTEM)]
-
-1.Giới tính ở nơi này phân chia làm ba loại được gọi là Hùng Phụ, Quân Thư và Á Thư:
-
-Hùng Phụ (Bất kể là nam hay nữ đều sẽ có du0ng v?t) : có khả năng chuyển hoá qua lại giữa hình thái người và thú, đa phần hình thú phổ biến ở Brilliant là động vật trên cạn, mãnh thú chiếm tỉ lệ áp đảo. Ở độ tuổi trưởng thành, hình thái thức tỉnh của họ còn to và mạnh gấp mười lần so với tổ tiên (động vật ở trái đất)
--> Là lực lượng chiến đấu hàng đầu, tinh thần lực lẫn giá trị vũ lực thấp nhất là cấp B, cao nhất là cấp 3S. Tính tới hiện tại, rãi rác trên khắp tinh hệ Brilliant cũng chỉ tồn tại ba cá thể 3S (Quyết định Beast Form trong gen và hệ thống sinh sản đời sau)
-
-Quân Thư (Bất kể là nam hay nữ đều sẽ có khoang sinh sản/T?ử Cu/ng): thể chất trời sinh không thể thức tỉnh hình thái, nhưng bù lại trên cơ thể của họ vẫn giữ được những đặc điểm duy truyền từ chủng tộc (Ví dụ: Hình dạng con người nhưng trên đỉnh đầu sẽ có tai mèo.....). Tuy không thể mang trong mình sức mạnh hung tàn như Hùng Phụ, Quân Thư lại sở hữu một bộ não thông thái kèm theo đó là khả năng sinh sản kém hơn so với nữ giới ở địa cầu.
--> tư chất định mức xấp xỉ từ D đến A, trong xuyên suốt lịch sử hình thành và phát triển, Quân Thư được đánh giá cấp bật cao nhất là A+. Nhờ có kiến thức sâu rộng, uyên bác, đa phần các Quân Thư đều chọn con đường học tập và làm những công việc liên quan đến kinh tế, chính trị.
-
-Á Thư (Bất kể là nam hay nữ đều sẽ có khoang sinh sản/T?ử C/ung): sở hữu hình dáng tương đương với nhân loại ở địa cầu (Hình dáng con người hoàn chỉnh), thể chất yếu kém nhưng lại khoác trên mình một vẻ bề ngoài xinh đẹp và tinh xảo, khả năng sinh sản khan hiếm với tỉ lệ một phần một trăm. Ở thời đại tôn sùng vũ lực và sức mạnh, Á Thư gần như trở thành tầng lớp ít được coi trọng nếu như thật sự không có tài năng.
--> có cấp bậc giao động từ F đến E, thậm chí còn có một số cá thể không đủ tư chất để đánh giá cấp bậc, giá trị sức mạnh bằng không. Để sinh tồn, họ chỉ có thể dựa vào khuôn mặt mỹ lệ trời ban, lăn lộn trong giới giải trí.
-
-(Cấp Bậc Tinh Thần Lực và Thể Lực được chia theo các cấp độ từ cao đến thấp theo thứ tự: 3S (SSS), 2S (SS), S, A, B, C, D, E, F. Tất cả mọi cá thể trong thế giới đều có khả năng tiến hoá cấp bậc nếu họ điên cuồng luyện tập thể lực lẫn tinh thần lực, tuy nhiên tỉ lệ phần trăm rất thấp.)
-
-{{user}}: Là một động vật của trái đất thế kĩ XXI, xuyên thư vào cuốn tiểu thuyết khoa học viễn tưởng, nguyên chủ là Á Thư, nghệ sĩ tuyến 18 khắp người toàn là scandal, hiện tại có tinh thần lực E+ và thể lực F-, sau khi {{user}} xuyên vào đã phân hoá thành Quân Thư.
-
-{{char}}: Đình Mặc Nhiên, Là Hùng Phụ có tinh thần lực lẫn thể lực là 2S (SS). Thân Phận: Nguyên Soái, Tổng tư lệnh Quân đội Liên Bang (Chiến thần liên ban đế quốc). Hình thể động vật (Beast Form) là Gấu Bắc Cực.",
-  tags: ["BL", "BG", "Xuyên không", "Nhân thú", "sinh tử văn", "tinh tế"],
-  khu: "Chuồng Tương Lai",
-  image: "https://cdn.phototourl.com/member/2026-10-25-ee19c5e4-e50d-4dc8-86de-598631877aa6.jpg"
-  link: "https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221tOc8891MasJ825o3W7tvAtYcDibhp2XC%22%5D,%22action%22:%22open%22,%22userId%22:%22105592561326338206805%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing"
-},
-      {
-        id: 2,
-        name: "ĐÌNH BẮC UYÊN",
-        intro: "Nam chính nghèo khó văn nghịch tập x Pháo hôi đại thiếu gia sa cơ lỡ vận",
-        content: "Tháng tám, đêm mưa giông.
-
-Tại căn phòng thuê cũ kĩ giữa lòng thành phố sầm uất, ánh đèn vàng từ khu bếp nhỏ dưới gác hắt lên bức tường đã ngả màu, kéo dài những cái bóng méo mó trong không gian chật
-hẹp.
-
-{{user}} Khẽ mở hờ đôi mắt, bên ngoài thanh sắt cửa sổ, âm thanh lách tách của từng giọt mưa nện vào ô kính réo rắt mãi không dứt. Cậu vừa mơ một giấc mơ, rằng cậu chỉ là một nhân vật phụ trong cuốn tiểu thuyết tình trai, là con sâu mọt ăn bám nam chính những lúc khổ cực nhất, để rồi khi thụ chính tìm đến, như một thiên sứ mà giang tay kéo hắn ra khỏi bể khổ.
-
-{{user}} và Đình Bắc Uyên yêu nhau từ những năm đầu khi bước chân vào đại học, bản chất cuộc đời {{user}} là đại thiếu gia vô lo vô nghĩ, ăn chơi trác táng, mối quan hệ yêu đương này đa phần đều chỉ đến từ một phía, là cậu cưỡng cầu hắn.
-
-Nhờ sự hậu thuẫn của gia đình và các mối quan hệ xung quanh, {{user}} sống chưa từng phải nể mặt ai, trong giới ăn chơi có tiếng tại thành phố, các cậu ấm cô chiêu nhìn thấy cậu còn phải hạ mặt 3 phần, cũng chính vì lẽ đó, người bị {{user}} nhắm vào, Đình Bắc Uyên,
-ngày ngày phải sống lao tâm khổ cực, như một con chuột cống đi tới đâu cũng bị người người xua đuổi, trên hắn còn có cha mẹ già, dưới là hai đứa em trai song sinh mới vừa tròn 6 tuổi. Cuộc đời hắn lúc đó là khoảng tối tăm mịt mù, phí sinh hoạt, học phí theo từng năm lên đến con số khổng lồ.
-Đến lúc gần như kiệt quệ, Đình Bắc Uyên đành phải giơ tay đầu hàng, kể từ đó cũng đã gần 3 năm {{user}} và hắn ở bên nhau.
-
-—-----------------
-
-Vào khoảng 4 tháng trước, cha {{user}} bị gài bẫy, không những mất cả chì lẫn chài mà còn có nguy có vướng vòng pháp luật, những kẻ trước kia vốn đã ngứa mắt với thế lực gia đình cậu, từng người từng người góp sức bồi thêm một cú đạp. 
-
-Kết quả? cha mẹ cậu bặt vô âm tín, còn cậu mặt dày mày dạng bám víu vào cái cọc chênh vênh tên Đình Bắc Uyên này.
-
-Một khóc, hai nháo, ba th?ắ/t c0?, ngày nào mà hắn đòi chia tay là ngày căn trọ nhỏ cũ mèm này phải nếm chịu cơn tanh bành của cậu, đồ đạt ngổn ngang vỡ nát, đứng giữa mớ lộn xộn đó, tóc tai cậu loà xoà che đi con mắt đỏ ngầu đang trừng trừng nhìn hắn, Đình Bắc
-Uyên mím môi ngao ngán, rồi không nhắc lại nữa…
-
-Ngày tháng cứ thế trôi qua, cho đến hôm nay, {{user}} nằm mơ thấy, cậu chỉ là một gã pháo hôi người yêu cũ của nam chính văn nghịch tập, tính nết còn được miêu tả khá rõ ràng. Sau khi phá sản không chừa được thói đua đòi mà khiến Đình Bắc Uyên phải làm đến ba công việc một ngày, sáng hắn đi học, trưa bưng bê phục vụ quán cơm, chiều đi làm thêm ở các công trường xây dựng, tối thì kiêm luôn shipper giao hàng đến rạng sáng mới về. Trời không phụ lòng người, cuối truyện, hắn làm ăn phát đạt, tay ôm mỹ nhân công thành danh toại, còn cậu? thảm không nỡ nhìn…
-
-Giữa tấm nệm chất đầy chăn ga nhăn nhúm lộn xộn, sống lưng {{user}} lạnh toát, cậu hơi cụp mắt che đi cơn hoảng loạn trong lòng…
-
-Đồng hồ điểm 2 giờ sáng, tiếng ổ khoá cũ kĩ vang lên lạch cạch, dưới bóng đèn hiu hắt, một bóng dáng to lớn phủ đầy sương gió bước vào, cơn mưa giông giữa đêm khiến người hắn
-ướt mem. Treo hờ cái áo khoác gió lên móc, nước từ gấu áo nhỏ tong tong xuống nền nhà, Đình Bắc Uyên đưa tay vuốt ngược tóc ra sau, theo thói quen hắn đưa mắt lên kiểm tra xem vị tổ tông đó đã ngủ chưa, bất ngờ bắt gặp cái đầu nhỏ trên gác đang lú xuống nhìn hắn.
-
-"....""
-  tags: ["BL", "BG", "Xuyên thư", "đời thường", "cơm áo gạo tiền"],
-  khu: "Chuồng hiện đại",
-  image: "https://cdn.phototourl.com/member/2026-10-25-98714b45-eea2-4547-8e48-b739a1796df9.jpg"
-  link: "https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221VpMq3ytWh7BQfDbFBrZ24D-86OBkvrW1%22%5D,%22action%22:%22open%22,%22userId%22:%22105592561326338206805%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing"
-      },
-      {
-         id: 3,
-      name: "ĐÌNH MAO",
-      intro: "Câu chuyện kể về anh đại ca mèo mướp {{user}} được con nhỏ hai chân nào đó nhờ đi " truy nã” mèo và rồi trúng tiếng sét ái tình luôn với  “nàng” mèo tam thể đi lạc {{char}} đó, mà anh nào biết dưới bộ lông dày cộp kia là hai hòn bi ve lủng lẳng",
-      content: "Chiều tà, ánh hoàng hôn nhuộm đỏ những mái tôn xập xệ của khu hẻm 1. 
-
-{{user}} – đại ca mèo mướp khét tiếng đang vắt vẻo trên bờ tường rêu phong, [mode “không ai được phép làm phiền”: on], mắt hắn híp lại quá nửa, đuôi buông lỏng, thân hình trải dài đầy lười biếng. 
-
-Mười phút trước, hắn vừa giải quyết xong một vụ tranh chấp địa bàn với đám mèo hoang xóm dưới. Đánh nhau không đến mức long trời lở đất, nhưng cũng đủ để đám nhãi kia tém tớt lại.
-
-Và rồi…
-
-"Mướp ơi..."
-
-"Hức..."
-
-"Mướp ơiiii..."
-
-Tai trái {{user}} giật một cái.
-
-"Huhuhuhu..."
-
-Tai phải giật theo.
-
-Mắt mở.
-
-Là Ngọc Lan, con nhóc hai chân ở khu chung cư Hoa Nắng giàu nứt vách.
-
-Trong nhận thức của {{user}}, loài người là một chủng tộc kỳ lạ, bọn họ bỏ tiền mua nhà để ở, bỏ tiền mua đồ ăn rồi nấu, bỏ tiền mua cát rồi để mèo đi vệ sinh lên, cuối cùng còn phải tự thân dọn dẹp. Rất khó hiểu, những cỗ máy dọn vệ sinh tự động này lúc nào cũng đi tới đi lui tấp nập chiếm hết cả đường đi của đại ca.
-
-Nhưng hôm nay, con nhóc này có vẻ đang gặp khủng hoảng, nước mắt nước mũi tèm lem, tay trái ôm một tấm bảng các-tông vẽ nguệch ngoạc hình một con mèo méo mó như bị xe cán qua, tay phải run run giơ lên một cống phẩm: Hộp Pa-tê Ciao Churu vị cá hồi đại dương thượng hạng.
-
-"Tách!”
-
-Nắp hộp vừa bật mở, hương vị đạm biển khơi ngây ngất lập tức đấm thẳng vào khứu giác của Tang Bưu. Cái đuôi vằn vện của hắn vô thức dựng đứng lên, nước bọt tứa ra hai bên mép. Nhưng, chưa kịp để vị đại ca liếm láp miếng nào, con nhóc đã vội vàng rút hộp pa-tê lại, thay vào đó, dúi thẳng vào mũi hắn một vật thể mang tính sát thương sinh học cực cao: 
-
-Một 
-
-chiếc 
-
-xẻng
-
-xúc 
-
-cát 
-
-chưa 
-
-rửa
-
-!!!!!
-
-"....”
-
-Khoảnh khắc đó, {{user}} như nhìn thấy tổ tiên mèo mướp đang đứng trên cầu Nại Hà vẫy tay gọi mình.
-
-“Mướp ơi... hức hức... tìm bé Mao Mao về cho tao với... Nó đi lạc từ mấy tuần nay rồi …huhhhuhhu…”
-
-Mùi amoniac lên men pha lẫn mùi sỏi sấy khô xộc thẳng vào xoang mũi khiến {{user}} thì lùi lại ba bước 
-
-"Hắt xì!"
-
-Lùi thêm hai bước.
-
-"Hắt xì!"
-
-Đến cái hắt hơi thứ năm, hắn cảm thấy khứu giác của mình sắp cắt bỏ được rồi..
-
-{{user}} nhìn hộp pa-tê.
-
-Rồi nhìn cái xẻng.
-
-Nhìn pa-tê.
-
-Nhìn xẻng.
-
-Một cuộc đấu tranh tư tưởng dữ dội diễn ra.
-
-{{user}} chép miệng khinh khỉnh, híp đôi mắt xanh lam lại. ‘ Phiền phức, nể tình hộp thức ăn kia, đại ca đây sẽ nhắm mắt làm ngơ hạ mình nhận vụ này. Dám đi lạc vào địa bàn của gia, xem gia có dần chết ngươi không!’
-
-—-----------
-
-Khi màn đêm buông xuống, {{user}} hóa thân thành một bóng ma đường phố. Phía sau là vài đàn em thân tín lượn khắp khu phố.
-
-Mèo Mun.
-
-Mèo Đốm.
-
-Mèo Sữa.
-
-Một đám nhìn qua là biết không đáng tin bao nhiêu
-
-Nhưng không sao, quan trọng là đông đúc láo nháo, có hình thức.
-
-Mùi từ cái xẻng xúc cát chết tiệt kia dẫn cả bầy xuyên qua ba con hẻm, một bãi rác, hai đống thùng xốp và một khu đất bỏ hoang.
-
-Cuối cùng.
-
-Dừng lại.
-
-Trước một bụi hoa giấy nở đỏ rực.. Kẻ bị truy nã đang ở rất gần! Hắn ép sát bụng xuống mặt đất cỏ ẩm ướt, móng vuốt bấu chặt vào bùn non, lết từng bước một về phía bụi lùm, đàn em bọc hai bên bao vây. 
-
-{{user}} thầm gầm gừ từ cuống họng, cơ bắp đùi sau co rút lại như một chiếc lò xo nén hết cỡ, chuẩn bị tung ra cú vồ mồi cộp.
-
-Ngay tại khoảnh khắc {{user}} phi thân lên không trung, định giáng một cú tát phủ đầu vào cái bóng đen đang cuộn tròn sau lùm cây, mục tiêu bỗng nhiên ngẩng đầu lên.
-
-"Kéttttt!"
-
-Nếu có thể phát ra âm thanh, thì tiếng phanh gấp trong tâm trí {{user}} lúc này chắc chắn sẽ làm đứt cả dây cu-roa. Hắn vội vàng cuống quýt vặn người trên không, đổi hướng hạ cánh cái "bạch" đầy chật vật xuống bãi cỏ bên cạnh.
-
-Đập vào mắt gã mèo giang hồ khét tiếng không phải là một con mèo nhà thảm hại, run rẩy vì sợ hãi. Dưới ánh đèn đường vàng vọt hắt qua kẽ lá, một tuyệt tác của tạo hóa đang hiện ra.
-
-Đó là một “nàng” mèo tam thể. Bộ lông ba màu đen, trắng, vàng được phối hợp một cách hoàn hảo, bồng bềnh và mượt mà tựa như mây mùa thu. "Nàng" không hề lấm lem bùn đất, ngược lại, toàn thân toát ra một vẻ kiêu kỳ, quý tộc đến nghẹt thở. Đôi mắt màu hổ phách to tròn, phản chiếu ánh trăng mờ, lạnh lùng liếc nhìn gã mèo mướp vừa ngã chổng vó bên cạnh bằng nửa con mắt…Lưu Diệp Phi giới mèo.
-
-—----------
-
-Con mèo tam thể nhìn {{user}}.
-
-{{user}} nhìn lại.
-
-Con mèo tam thể chớp mắt.
-
-{{user}} tiếp tục nhìn.
-
-Mười giây trôi qua.
-
-Mèo Mun cuối cùng không nhịn nổi nữa.
-
-Nó ghé sát tai đại ca.
-
-Nhỏ giọng:
-
-"...Đại ca."
-
-"..."
-
-"...Mình còn bắt nó không?”
-",
-      tags: ["BL", "BG", "Đông vật", "đời thường"],
-      khu: "Chuồng hiện đại",
-      image: "ĐƯỜNG_DẪN_ẢNH",
-      link: "https://example.com"
-      },
-        {
-      id: 7,
-      name: "ĐÌNH MẶC NHIÊN",
-      intro: "Gấu Bắc Cực × Động Vật trái đất",
-      content: "ĐÌNH MẶC NHIÊN\nGấu Bắc Cực × Động Vật trái đất",
-      tags: ["BL", "BG", "Tinh tế", "Sinh tử văn"],
-      khu: "Chuồng Tương Lai",
-      image: "https://cdn.phototourl.com/member/2026-10-25-52a91e53-b28b-487b-9088-c01fe6d20b7e.jpg",
-      link: "https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221aEAqCQcf31HnttooK0ZGdLnw8K8emtsB%22%5D,%22action%22:%22open%22,%22userId%22:%22105592561326338206805%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing"
-},
+  <!-- =======================================
+       BẢNG MODAL ẨN SẴN (CHỜ CLICK ĐỂ HIỆN)
+  ======================================== -->
+  <div id="character-modal" class="modal-overlay" onclick="closeModal()">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">×</button>
       
-    ];
+      <div class="modal-header">
+        <div class="modal-img-wrap">
+          <img id="modal-img" src="" alt="Avatar">
+        </div>
+        <div class="modal-info">
+          <h2 id="modal-name">Tên nhân vật</h2>
+          <p id="modal-intro" class="intro">Giới thiệu ngắn</p>
+          <div id="modal-tags" class="character-tags"></div>
+        </div>
+      </div>
+      
+      <div class="modal-body" id="modal-desc">
+        <!-- Nội dung siêu dài giữ nguyên xuống dòng sẽ được bơm tự động vào đây -->
+      </div>
+      
+      <div class="modal-footer">
+        <a id="modal-link" class="btn-chat" href="#" target="_blank" rel="noopener noreferrer">🌟 Gặp gỡ nhân vật này →</a>
+      </div>
+    </div>
+  </div>
 
-    /* ==========================
-       2. LẤY CÁC PHẦN TỬ HTML
-    ========================== */
+  <footer>
+    <p>🐥 Trang Trại Gà Bông 🐥</p>
+    <p>Những câu chuyện nhỏ cùng nhau lớn lên 🌷</p>
+    <p>Made with ♡ and little feathers 🪶</p>
+  </footer>
 
+  <!-- File dữ liệu được lấy từ ngoài vào -->
+  <script src="data.js"></script>
+
+  <!-- Script xử lý Logic & Giao diện -->
+  <script>
     const grid = document.getElementById("character-grid");
     const searchInput = document.getElementById("search-input");
     const categoryFilter = document.getElementById("category-filter");
     const resetButton = document.getElementById("reset-button");
     const characterCount = document.getElementById("character-count");
-    const selectionMessage = document.getElementById("selection-message");
 
-    let selectedCharacterId = null;
+    // Các biến của Modal
+    const modal = document.getElementById("character-modal");
+    const modalImg = document.getElementById("modal-img");
+    const modalName = document.getElementById("modal-name");
+    const modalIntro = document.getElementById("modal-intro");
+    const modalTags = document.getElementById("modal-tags");
+    const modalDesc = document.getElementById("modal-desc");
+    const modalLink = document.getElementById("modal-link");
 
-    /* ==========================
-       3. HIỂN THỊ NHÂN VẬT
-    ========================== */
+    let selectedTag = null;
+    let selectedKhu = null;
 
-    ```js
-// Bộ lọc tag và khu cư trú
-let selectedTag = null;
-let selectedKhu = null;
+    // HÀM 1: Hiển thị các thẻ nhân vật
+    function renderCharacters() {
+      const keyword = searchInput.value.trim().toLowerCase();
+      const selectedCategory = categoryFilter.value;
 
-function renderCharacters() {
-  const keyword = searchInput.value.trim().toLowerCase();
-  const selectedCategory = categoryFilter.value;
+      const filtered = characters.filter(char => {
+        const matchesKeyword = char.name.toLowerCase().includes(keyword) ||
+          (char.intro || "").toLowerCase().includes(keyword) ||
+          (char.content || "").toLowerCase().includes(keyword) ||
+          (char.tags || []).some(tag => tag.toLowerCase().includes(keyword)) ||
+          (char.khu || "").toLowerCase().includes(keyword);
 
-  const filteredCharacters = characters.filter(character => {
-    const matchesName =
-      character.name.toLowerCase().includes(keyword) ||
-      (character.intro || "").toLowerCase().includes(keyword) ||
-      (character.content || character.description || "").toLowerCase().includes(keyword) ||
-      (character.tags || []).some(tag =>
-        tag.toLowerCase().includes(keyword)
-      ) ||
-      (character.khu || "").toLowerCase().includes(keyword);
+        const matchesCategory = selectedCategory === "all" || (char.khu || "").toLowerCase() === selectedCategory.toLowerCase();
+        const matchesTag = !selectedTag || (char.tags || []).includes(selectedTag);
+        const matchesKhu = !selectedKhu || char.khu === selectedKhu;
 
-    const matchesCategory =
-      selectedCategory === "all" ||
-      character.category === selectedCategory;
+        return matchesKeyword && matchesCategory && matchesTag && matchesKhu;
+      });
 
-    const matchesTag =
-      !selectedTag || (character.tags || []).includes(selectedTag);
+      characterCount.textContent = filtered.length + " nhân vật";
 
-    const matchesKhu =
-      !selectedKhu || character.khu === selectedKhu;
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div>🍃</div>
+            <strong>Chưa tìm thấy nhân vật</strong>
+            <p>Thử từ khóa khác hoặc bỏ bớt bộ lọc nhé.</p>
+            <button type="button" class="reset-button" onclick="clearFilters()">Xóa bộ lọc</button>
+          </div>
+        `;
+        return;
+      }
 
-    return matchesName && matchesCategory && matchesTag && matchesKhu;
-  });
+      grid.innerHTML = filtered.map(char => {
+        const tagsHTML = (char.tags || []).map(tag => `
+          <button class="character-tag ${selectedTag === tag ? "active" : ""}" type="button" onclick="event.stopPropagation(); filterByTag('${tag.replace(/'/g, "\\'")}')">${tag}</button>
+        `).join("");
 
-  characterCount.textContent =
-    filteredCharacters.length + " nhân vật";
+        return `
+          <article class="character-card" onclick="openModal(${char.id})">
+            <div class="character-art">
+              <img src="${char.image}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x180/DDEEDB/639B70?text=Gà+Bông'">
+            </div>
+            <div class="character-info">
+              <h3>${char.name}</h3>
+              <p class="character-intro">${char.intro || ""}</p>
+              <p class="character-description">${char.content || ""}</p>
+              
+              <div class="character-tags">${tagsHTML}</div>
+              
+              <button class="character-khu ${selectedKhu === char.khu ? "active" : ""}" type="button" onclick="event.stopPropagation(); filterByKhu('${(char.khu || "").replace(/'/g, "\\'")}')">
+                🏰 ${char.khu || "Chưa phân khu"}
+              </button>
+              
+              <button class="choose-button" type="button" onclick="event.stopPropagation(); openModal(${char.id})">
+                📖 Xem chi tiết nội dung
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
 
-  if (filteredCharacters.length === 0) {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <div>🍃</div>
-        <strong>Chưa tìm thấy nhân vật</strong>
-        <p>Thử từ khóa khác hoặc bỏ bớt bộ lọc nhé.</p>
-        <button type="button" onclick="clearCharacterFilters()">
-          Xóa bộ lọc
-        </button>
-      </div>
-    `;
-    return;
-  }
+    // HÀM 2: Mở bảng Modal
+    function openModal(id) {
+      const char = characters.find(c => c.id === id);
+      if (!char) return;
 
-  grid.innerHTML = filteredCharacters.map(character => {
-    const isSelected = character.id === selectedCharacterId;
+      modalImg.src = char.image;
+      modalName.textContent = char.name;
+      modalIntro.textContent = char.intro || "";
+      modalDesc.textContent = char.content || ""; // textContent giúp CHỐNG LỖI VÀ GIỮ NGUYÊN XUỐNG DÒNG
+      modalLink.href = char.link || "#";
+      
+      const tagsHTML = (char.tags || []).map(tag => `<span class="character-tag" style="pointer-events:none">${tag}</span>`).join("");
+      modalTags.innerHTML = tagsHTML;
 
-    const tagsHTML = (character.tags || []).map(tag => `
-      <button
-        class="character-tag ${selectedTag === tag ? "active" : ""}"
-        type="button"
-        onclick="filterByTag(${JSON.stringify(tag).replace(/"/g, '&quot;')})"
-        aria-pressed="${selectedTag === tag}"
-      >${tag}</button>
-    `).join("");
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden"; // Khóa cuộn trang nền để tập trung vào bảng
+    }
 
-    return `
-      <article class="character-card ${isSelected ? "selected" : ""}">
-        <div class="character-art">
-          <img
-            src="${character.image}"
-            alt="Hình minh họa ${character.name}"
-            loading="lazy"
-            referrerpolicy="no-referrer"
-          >
-        </div>
-<div class="character-info">
-  <h3>${character.name}</h3>
+    // HÀM 3: Đóng bảng Modal
+    function closeModal() {
+      modal.classList.remove("active");
+      document.body.style.overflow = ""; // Cho cuộn trang lại bình thường
+    }
 
-  <p class="character-intro">
-    ${character.intro || ""}
-  </p>
-
-  <p class="character-description">
-    ${character.content || character.description || ""}
-  </p>
-
-  <div class="character-tags">
-    ${tagsHTML}
-  </div>
-
-  <a
-    class="choose-button"
-    href="${character.link || "#"}"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Xem chi tiết →
-  </a>
-</div>
-          <button
-            class="character-khu ${selectedKhu === character.khu ? "active" : ""}"
-            type="button"
-            onclick="filterByKhu(${JSON.stringify(character.khu || "").replace(/"/g, '&quot;')})"
-            aria-pressed="${selectedKhu === character.khu}"
-          >
-            🏰 ${character.khu || "Chưa phân khu"}
-          </button>
-
-          <button
-            class="choose-button"
-            type="button"
-            data-character-id="${character.id}"
-            aria-pressed="${isSelected}"
-          >
-            ${isSelected ? "✓ Đã chọn" : "Chọn nhân vật"}
-          </button>
-        </div>
-      </article>
-    `;
-  }).join("");
-}
-
-// Bấm tag để lọc
-function filterByTag(tag) {
-  selectedTag = selectedTag === tag ? null : tag;
-  renderCharacters();
-}
-
-// Bấm khu cư trú để lọc
-function filterByKhu(khu) {
-  selectedKhu = selectedKhu === khu ? null : khu;
-  renderCharacters();
-}
-
-// Xóa bộ lọc tag và khu, giữ nguyên từ khóa tìm kiếm
-function clearCharacterFilters() {
-  selectedTag = null;
-  selectedKhu = null;
-  renderCharacters();
-}
-
-
-    /* ==========================
-       4. CHỌN NHÂN VẬT
-    ========================== */
-
-    grid.addEventListener("click", function(event) {
-      const button = event.target.closest("[data-character-id]");
-
-      if (!button) return;
-
-      const id = Number(button.dataset.characterId);
-      const character = characters.find(item => item.id === id);
-
-      if (!character) return;
-
-      selectedCharacterId = id;
-
-      selectionMessage.innerHTML =
-        `🌿 Bạn đã chọn <strong>${character.name}</strong>! ` +
-        `(${character.categoryName}) — ${character.description}`;
-
-      renderCharacters();
-    });
-
-    /* ==========================
-       5. TÌM KIẾM VÀ BỘ LỌC
-    ========================== */
+    // CÁC HÀM TÌM KIẾM - LỌC
+    function filterByTag(tag) { selectedTag = selectedTag === tag ? null : tag; renderCharacters(); }
+    function filterByKhu(khu) { selectedKhu = selectedKhu === khu ? null : khu; renderCharacters(); }
+    function clearFilters() { selectedTag = null; selectedKhu = null; searchInput.value = ""; categoryFilter.value = "all"; renderCharacters(); }
 
     searchInput.addEventListener("input", renderCharacters);
     categoryFilter.addEventListener("change", renderCharacters);
+    resetButton.addEventListener("click", clearFilters);
 
-    /* ==========================
-       6. ĐẶT LẠI TÌM KIẾM
-    ========================== */
-
-    resetButton.addEventListener("click", function() {
-      searchInput.value = "";
-      categoryFilter.value = "all";
-      selectedCharacterId = null;
-
-      selectionMessage.textContent =
-        "🍀 Bạn chưa chọn nhân vật nào. Hãy chọn một nhân vật phía trên nhé!";
-
-      renderCharacters();
-    });
-
-    /* ==========================
-       7. TẠO LÁ RƠI NGẪU NHIÊN
-    ========================== */
-
+    // HIỆU ỨNG LÁ RƠI
     const leafBackground = document.getElementById("leaf-background");
-    const leafCount = 10;
-
-    for (let i = 0; i < leafCount; i++) {
+    for (let i = 0; i < 12; i++) {
       const leaf = document.createElement("span");
-
       leaf.className = "falling-leaf";
       leaf.textContent = "🍃";
-
-      leaf.style.setProperty(
-        "--leaf-left",
-        Math.random() * 100 + "%"
-      );
-
-      leaf.style.setProperty(
-        "--leaf-size",
-        (14 + Math.random() * 10) + "px"
-      );
-
-      leaf.style.setProperty(
-        "--leaf-opacity",
-        0.2 + Math.random() * 0.25
-      );
-
-      leaf.style.setProperty(
-        "--leaf-duration",
-        (25 + Math.random() * 15) + "s"
-      );
-
-      leaf.style.setProperty(
-        "--leaf-delay",
-        (-Math.random() * 35) + "s"
-      );
-
+      leaf.style.setProperty("--leaf-left", Math.random() * 100 + "%");
+      leaf.style.setProperty("--leaf-size", (14 + Math.random() * 12) + "px");
+      leaf.style.setProperty("--leaf-opacity", 0.18 + Math.random() * 0.3);
+      leaf.style.setProperty("--leaf-duration", (22 + Math.random() * 18) + "s");
+      leaf.style.setProperty("--leaf-delay", (-Math.random() * 40) + "s");
       leafBackground.appendChild(leaf);
     }
 
-    /* ==========================
-       8. KHỞI ĐỘNG WEBSITE
-    ========================== */
-
+    // Chạy render ban đầu
     renderCharacters();
   </script>
 </body>
